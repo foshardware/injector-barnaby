@@ -21,23 +21,23 @@ program = do
 
 
 registrar = Registrar
-  { someService = SomeInterface
+  { someService = SomeService
   }
 
 
 data Registrar where
   Registrar ::
-    ( ISomeInterface someInterface
+    ( ISomeInterface someService
     ) =>
-    { someService :: someInterface
+    { someService :: someService
     } -> Registrar
 
 
 class ISomeInterface a where
   someMethod :: a -> IO ()
 
-data SomeInterface = SomeInterface
+data SomeService = SomeService
 
-instance ISomeInterface SomeInterface where
-  someMethod SomeInterface = putStrLn "test"
+instance ISomeInterface SomeService where
+  someMethod SomeService = putStrLn "some service"
 
