@@ -1,17 +1,11 @@
-{-# LANGUAGE GADTs #-}
+{-# LANGUAGE GADTs      #-}
 {-# LANGUAGE RankNTypes #-}
-{-# LANGUAGE RecordWildCards #-}
 
 module Program where
 
+import Injector.Barnaby
 
 type App = InjectorT Registrar IO
-
-
-registrar = Registrar
-  { someService = SomeService
-  }
-
 
 data Registrar where
   Registrar ::
@@ -23,9 +17,3 @@ data Registrar where
 
 class SomeInterface a where
   someMethod :: a -> IO ()
-
-data SomeService = SomeService
-
-instance SomeInterface SomeService where
-  someMethod SomeService = putStrLn "some service"
-
